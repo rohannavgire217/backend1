@@ -2,13 +2,13 @@ from fastapi import FastAPI
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 
 try:
+    from itip_backend.api.routers import entities, health
     from itip_backend.core.config import settings
     from itip_backend.core.tracing import configure_tracing
-    from itip_backend.api.routers import health, entities
 except ImportError:  # pragma: no cover
+    from api.routers import entities, health
     from core.config import settings
     from core.tracing import configure_tracing
-    from api.routers import health, entities
 
 configure_tracing()
 app = FastAPI(title=settings.PROJECT_NAME, version="1.0.0")
@@ -25,4 +25,5 @@ app.include_router(entities.router, prefix=f"{settings.API_V1_STR}/entities", ta
 
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run(app, host="0.0.0.0", port=8000)
