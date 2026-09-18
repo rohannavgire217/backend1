@@ -2,8 +2,9 @@ services:
   - type: web
     name: itip-backend
     runtime: python
-    buildCommand: pip install -r itip_backend/requirements.txt
-    startCommand: python -m uvicorn itip_backend.api.main:app --host 0.0.0.0 --port $PORT
+    rootDir: itip_backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m uvicorn api.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     envVars:
       - key: SECRET_KEY
