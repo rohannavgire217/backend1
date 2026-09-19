@@ -145,7 +145,7 @@ def get_firms():
     url = (
         "https://firms.modaps.eosdis.nasa.gov/"
         f"api/area/csv/{api_key}/"
-        f"VIIRS_NOAA21_NRT/{area}/1"
+        f"VIIRS_NOAA21_NRT/{area}/5"
     )
 
     try:
